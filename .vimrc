@@ -6,6 +6,10 @@ set number
 " Nerd tree with Cntrl-N
 map <C-n> :NERDTreeToggle<CR>
 
+" Tab options
+set expandtab " Insert spaces instead of tabs 
+set tabstop=4 " 4 spaces for every tab
+
 " Option click inside vim
 set mouse=a
 
