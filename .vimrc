@@ -34,8 +34,8 @@ hi clear SignColumn
 " Show the vim-airline always
 set laststatus=2
 
-" Trim trailing whitespace on save
-autocmd BufWritePre *.py :%s/\s\+$//e
+" Trim trailing whitespace on save, for specified file types only
+autocmd BufWritePre *.{py,h,c,java,rs,js,json,php} :%s/\s\+$//e
 
 " enables :Paste to just do what you want
 command Paste execute 'set noai | insert | set ai'
