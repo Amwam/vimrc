@@ -1,0 +1,33 @@
+[push]
+  default = simple
+[filter "media"]
+  required = true
+  clean = git media clean %f
+  smudge = git media smudge %f
+[core]
+  excludesfile = /Users/amit/.gitignore_global
+[credential]
+  helper = osxkeychain
+[alias]
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  lga = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit --all
+  st = status
+  ci = commit
+  co = checkout
+  br = branch -avv
+  oldest-ancestor = !zsh -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
+  unmerged = branch -r --no-merged origin/master # Show all the branches not merged into master
+[rerere]
+  enabled = true
+  autoupdate = true
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
+[mergetool "sourcetree"]
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+[color]
+  ui = true
+  diff = true
+[pull]
+  rebase = false # Causing problems with sharing rerere
