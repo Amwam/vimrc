@@ -46,6 +46,9 @@ let g:minimap_highlight='Visual'
 " Set the clipboard to use the OS X default, rather than vim's
 set clipboard=unnamed
 
+" Compiles python using pylint
+autocmd FileType python compiler pylint
+
 " Vim/Python virtualenv autocomplete
 :python << EOF
 import os
