@@ -7,7 +7,7 @@ set number
 map <C-n> :NERDTreeToggle<CR>
 
 " Tab options
-set expandtab " Insert spaces instead of tabs 
+set expandtab " Insert spaces instead of tabs
 set tabstop=4 " 4 spaces for every tab
 
 " Option click inside vim
@@ -30,6 +30,9 @@ map <Leader>m <esc>:tabnext<CR>
 
 " Change the color of the sign/gutter to be clear
 hi clear SignColumn
+
+" set the color scheme
+color darcula
 
 " Show the vim-airline always
 set laststatus=2
@@ -57,4 +60,3 @@ if virtualenv:
 	activate_this = os.path.join(virtualenv, 'bin', 'activate_this.py')
 	if os.path.exists(activate_this):
 		execfile(activate_this, dict(__file__=activate_this))
-
