@@ -1,7 +1,7 @@
 execute pathogen#infect()
-syntax on
+syntax on " Syntax highlighting
 filetype plugin indent on
-set number
+set number " Line numbers in the gutter
 
 " Nerd tree with Cntrl-N
 map <C-n> :NERDTreeToggle<CR>
@@ -13,8 +13,7 @@ let NERDTreeIgnore = ['\.pyc$', '.DS_Store$']
 set expandtab " Insert spaces instead of tabs
 set tabstop=4 " 4 spaces for every tab
 
-" Option click inside vim
-set mouse=a
+set mouse=a " Option click inside vim
 
 set bs=2 " make backspace behave like normal again
 
@@ -31,11 +30,17 @@ set smartcase "Ignores case, except when capitals are used
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
 
-" Change the color of the sign/gutter to be clear
-"hi clear SignColumn
-
 " set the color scheme
 color darcula
+
+" Change the color of the sign/gutter 
+"hi clear SignColumn " make the sign column clear
+"
+" Change the background color to be black
+highlight SignColumn ctermbg=black 
+
+" Change the foreground color to be black
+highlight SignColumn ctermfg=black
 
 " Show the vim-airline always
 set laststatus=2
