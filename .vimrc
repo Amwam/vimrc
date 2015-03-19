@@ -3,6 +3,8 @@ syntax on " Syntax highlighting
 filetype plugin indent on
 set number " Line numbers in the gutter
 
+set textwidth=150 " default text width, purposly high just in case
+
 " Nerd tree with Cntrl-N
 map <C-n> :NERDTreeToggle<CR>
 
