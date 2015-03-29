@@ -2,8 +2,8 @@
   default = simple
 [filter "media"]
   required = true
-  clean = git media clean %f
-  smudge = git media smudge %f
+	clean = git media clean %f
+	smudge = git media smudge %f
 [core]
   excludesfile = /Users/amit/.gitignore_global
 	editor = /usr/bin/vim
@@ -32,3 +32,9 @@
   diff = true
 [pull]
   rebase = false # Causing problems with sharing rerere
+[user]
+	name = Amit Shah
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
