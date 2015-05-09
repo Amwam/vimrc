@@ -3,6 +3,26 @@ syntax on " Syntax highlighting
 filetype plugin indent on
 set number " Line numbers in the gutter
 
+" Flip the background color to be dark when in 'Insert' mode
+augroup modes
+  autocmd!
+  autocmd InsertEnter * :hi Normal ctermfg=146 ctermbg=16 cterm=NONE guifg=#000096 guibg=#000096 gui=NONE
+  autocmd InsertLeave * :hi Normal ctermfg=146 ctermbg=235 cterm=NONE guifg=#000096 guibg=#000096 gui=NONE
+augroup END
+
+" Write the file if there is a change, on exiting insert mode
+au InsertLeave * if &mod && expand('%')!=''|write|endif
+
+" Leave insert mode quickly
+if ! has('gui_running')
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
+endif
+
 set textwidth=150 " default text width, purposly high just in case
 
 " Nerd tree with Cntrl-N
@@ -59,6 +79,12 @@ let g:minimap_highlight='Visual'
 " Set the clipboard to use the OS X default, rather than vim's
 set clipboard=unnamed
 
+" highlight variables with '*'
+nnoremap * yiw:let @/=@"<CR>:set hls<CR>zz
+
+" Turn off by double tapping ,
+nnoremap <leader><leader> :set hls!<CR> 
+
 augroup vimrc_autocmds
     autocmd!
     " highlight characters past column 120
@@ -68,8 +94,7 @@ augroup vimrc_autocmds
     autocmd FileType python set colorcolumn=120
     augroup END
 
-
-"===================================
+let g:ctrlp_custom_ignore = 'pyc$' 
 " Python-mode
 " Activate rope
 " Keys:
