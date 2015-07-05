@@ -1,12 +1,47 @@
 execute pathogen#infect()
 syntax on " Syntax highlighting
 filetype plugin indent on
-set number " Line numbers in the gutter
+set relativenumber " Line numbers in the gutter
+set hidden " hide buffers instead of closing
+set title " Change the terminal title
+
+" When not in insert mode, use normal line numbers, Write mode for relative
+autocmd InsertEnter * :set norelativenumber
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+"Don't use vims backup/swapfiles
+set nobackup
+set noswapfile
+
+set autoindent " always set autoindenting on
+set copyindent " copy the previous indentation on autoindenting
+
+let mapleader = ","
+
+" Toggle the tag bar
+nnoremap <leader>l :TagbarToggle<CR>
+
+" TagList Plugin Configuration
+let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Close_On_Select = 1
+let Tlist_Use_Right_Window = 1
+let Tlist_File_Fold_Auto_Close = 1
+map <F7> :TlistToggle<CR>
+map <F10> :RunModule<CR>
+
+
+" Force the use of hjkl
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
 " Flip the background color to be dark when in 'Insert' mode
 augroup modes
   autocmd!
-  autocmd InsertEnter * :hi Normal ctermfg=146 ctermbg=16 cterm=NONE guifg=#000096 guibg=#000096 gui=NONE
+  autocmd InsertEnter * :hi Normal ctermfg=146 ctermbg=233 cterm=NONE guifg=#000096 guibg=#000096 gui=NONE
   autocmd InsertLeave * :hi Normal ctermfg=146 ctermbg=235 cterm=NONE guifg=#000096 guibg=#000096 gui=NONE
 augroup END
 
@@ -23,6 +58,9 @@ if ! has('gui_running')
   augroup END
 endif
 
+" Write file on focus lost
+au FocusLost * :wa
+
 set textwidth=150 " default text width, purposly high just in case
 
 " Nerd tree with Cntrl-N
@@ -34,14 +72,13 @@ let NERDTreeIgnore = ['\.pyc$', '.DS_Store$']
 " Tab options
 set expandtab " Insert spaces instead of tabs
 set tabstop=4 " 4 spaces for every tab
+set shiftwidth=4
 
 set mouse=a " Option click inside vim
 
 set bs=2 " make backspace behave like normal again
 
 let NERDTreeShowHidden=1
-
-let mapleader = ","
 
 " Search improvements
 set incsearch "Highlight as you search
@@ -55,11 +92,11 @@ map <Leader>m <esc>:tabnext<CR>
 " set the color scheme
 color darcula
 
-" Change the color of the sign/gutter 
+" Change the color of the sign/gutter
 "hi clear SignColumn " make the sign column clear
 "
 " Change the background color to be black
-highlight SignColumn ctermbg=black 
+highlight SignColumn ctermbg=black
 
 " Change the foreground color to be black
 highlight SignColumn ctermfg=black
@@ -83,18 +120,25 @@ set clipboard=unnamed
 nnoremap * yiw:let @/=@"<CR>:set hls<CR>zz
 
 " Turn off by double tapping ,
-nnoremap <leader><leader> :set hls!<CR> 
+nnoremap <leader><leader> :set hls!<CR>
 
 augroup vimrc_autocmds
     autocmd!
-    " highlight characters past column 120
+    " highlight characters past column 100
     autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Black
-    autocmd FileType python match Excess /\%120v.*/
+    autocmd FileType python match Excess /\%100v.*/
     autocmd FileType python set nowrap
-    autocmd FileType python set colorcolumn=120
+    autocmd FileType python set colorcolumn=100
     augroup END
 
-let g:ctrlp_custom_ignore = 'pyc$' 
+let g:ctrlp_custom_ignore = 'pyc$'
+
+" Speed up ctrlp by using a cache dir
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag') " may need to install the_silver_searcher via brew
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
 " Python-mode
 " Activate rope
 " Keys:
@@ -110,21 +154,20 @@ let g:ctrlp_custom_ignore = 'pyc$'
 " ]M            Jump on next class or method (normal, visual, operator
 " modes)
 
-let g:pymode_rope_goto_definition_bind = '<Leader>g'
+"Disable Rope
+let g:pymode_rope = 0
 
-let g:pymode_rope = 1
-let g:pymode_rope_complete_on_dot = 1
-let g:pymode_rope_completion = 1
-let g:pymode_rope_autoimport = 1
+" Override run current python file key shortcut to Ctrl-Shift-e
+let g:pymode_run_bind = "<C-S-e>"
 
 " Documentation
 let g:pymode_doc = 1
-let g:pymode_doc_key = 'K' 
+let g:pymode_doc_key = 'K'
 
 let g:pymode_folding = 0 " Don't auto fold code
 
-let g:pymode_options_max_line_length = 120 " set line length to 120
- 
+let g:pymode_options_max_line_length = 100 " set line length to 100
+
 " syntax highlighting
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
@@ -136,12 +179,12 @@ let g:pymode_virtualenv = 1
 
 " Linting
 let g:pymode_lint = 1
-let g:pymode_lint_checker = "pylint" " comma separated list of tools (such as pyflakes,pep8
+let g:pymode_lint_checker = "pep8" " comma separated list of tools (such as pyflakes,pep8
 "" Auto check on save
 let g:pymode_lint_write = 1
 let g:pymode_lint_unmodified = 0 " Run on every save, even if unchanged
-let g:pymode_lint_on_fly = 0
+let g:pymode_lint_on_fly = 1
 let g:pymode_lint_message = 1
+let g:pymode_lint_signs = 1
 
 "===================================
-
