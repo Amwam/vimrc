@@ -34,6 +34,7 @@
   rebase = false # Causing problems with sharing rerere
 [user]
 	name = Amit Shah
+	email = amit@amwam.me
 [filter "hawser"]
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
