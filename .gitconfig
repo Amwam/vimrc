@@ -5,7 +5,7 @@
 	clean = git media clean %f
 	smudge = git media smudge %f
 [core]
-  excludesfile = /Users/amit/.gitignore_global
+	excludesfile = /Users/amit/.gitignore_global
 	editor = /usr/bin/vim
 [credential]
   helper = osxkeychain
