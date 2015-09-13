@@ -41,8 +41,8 @@ map <right> <nop>
 " Flip the background color to be dark when in 'Insert' mode
 augroup modes
   autocmd!
-  autocmd InsertEnter * :hi Normal ctermfg=146 ctermbg=233 cterm=NONE guifg=#000096 guibg=#000096 gui=NONE
-  autocmd InsertLeave * :hi Normal ctermfg=146 ctermbg=235 cterm=NONE guifg=#000096 guibg=#000096 gui=NONE
+  autocmd InsertEnter * :hi Normal ctermfg=146 ctermbg=233 cterm=NONE guifg=#a9b7c6 guibg=#000000 gui=NONE
+  autocmd InsertLeave * :hi Normal ctermfg=146 ctermbg=235 cterm=NONE guifg=#a9b7c6 guibg=#2b2b2b gui=NONE
 augroup END
 
 " Write the file if there is a change, on exiting insert mode
@@ -67,7 +67,7 @@ set textwidth=150 " default text width, purposly high just in case
 map <C-n> :NERDTreeToggle<CR>
 
 " NerdTree ignore certain file types (array of regular expressions
-let NERDTreeIgnore = ['\.pyc$', '.DS_Store$']
+let NERDTreeIgnore = ['\.pyc$', '.DS_Store$', '.git/*', '.idea/*']
 
 " Tab options
 set expandtab " Insert spaces instead of tabs
@@ -92,14 +92,11 @@ map <Leader>m <esc>:tabnext<CR>
 " set the color scheme
 color darcula
 
-" Change the color of the sign/gutter
-"hi clear SignColumn " make the sign column clear
-"
-" Change the background color to be black
-highlight SignColumn ctermbg=black
+" Change the background and foreground color of the gutter to be black
+highlight SignColumn ctermbg=black ctermfg=black guibg=#000000 guifg=#000000
 
-" Change the foreground color to be black
-highlight SignColumn ctermfg=black
+" Set the line limits for a git commit message
+au FileType gitcommit set tw=72 | set spell | set colorcolumn=69
 
 " Show the vim-airline always
 set laststatus=2
