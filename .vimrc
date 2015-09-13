@@ -122,6 +122,8 @@ nnoremap * yiw:let @/=@"<CR>:set hls<CR>zz
 " Turn off by double tapping ,
 nnoremap <leader><leader> :set hls!<CR>
 
+nmap <leader>a <Esc>:Ack! <space>
+
 augroup vimrc_autocmds
     autocmd!
     " highlight characters past column 100
