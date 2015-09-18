@@ -131,6 +131,7 @@ augroup vimrc_autocmds
     augroup END
 
 let g:ctrlp_custom_ignore = 'pyc$'
+nnoremap <leader>. :CtrlPTag<cr>
 
 " Speed up ctrlp by using a cache dir
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
@@ -182,8 +183,24 @@ let g:pymode_lint_checker = "pep8" " comma separated list of tools (such as pyfl
 "" Auto check on save
 let g:pymode_lint_write = 1
 let g:pymode_lint_unmodified = 0 " Run on every save, even if unchanged
-let g:pymode_lint_on_fly = 1
-let g:pymode_lint_message = 1
-let g:pymode_lint_signs = 1
+let g:pymode_lint_on_fly = 0
+let g:pymode_lint_message = 0
+let g:pymode_lint_signs = 0
 
 "===================================
+
+source ~/.vim/plugin/autotag.vim
+
+"Syntastic settings
+" Use rope of python stuff
+let g:syntastic_ignore_files = ['\.py$']
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
+
