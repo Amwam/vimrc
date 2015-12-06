@@ -18,8 +18,6 @@ set noswapfile
 set autoindent " always set autoindenting on
 set copyindent " copy the previous indentation on autoindenting
 
-let mapleader = ","
-
 " Toggle the tag bar
 nnoremap <leader>l :TagbarToggle<CR>
 
