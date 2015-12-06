@@ -178,13 +178,13 @@ let g:pymode_virtualenv = 1
 
 " Linting
 let g:pymode_lint = 1
-let g:pymode_lint_checker = "pep8" " comma separated list of tools (such as pyflakes,pep8
+let g:pymode_lint_checker = "pep8,pylint" " comma separated list of tools (such as pyflakes,pep8
 "" Auto check on save
 let g:pymode_lint_write = 1
 let g:pymode_lint_unmodified = 0 " Run on every save, even if unchanged
-let g:pymode_lint_on_fly = 0
-let g:pymode_lint_message = 0
-let g:pymode_lint_signs = 0
+let g:pymode_lint_on_fly = 1
+let g:pymode_lint_message = 1
+let g:pymode_lint_signs = 1
 
 "===================================
 
