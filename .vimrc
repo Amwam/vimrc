@@ -2,6 +2,7 @@ execute pathogen#infect()
 syntax on " Syntax highlighting
 filetype plugin indent on
 set relativenumber " Line numbers in the gutter
+set number " Show the current line number instead of '0'
 set hidden " hide buffers instead of closing
 set title " Change the terminal title
 
