@@ -6,6 +6,7 @@ set number " Show the current line number instead of '0'
 set hidden " hide buffers instead of closing
 set title " Change the terminal title
 
+let mapleader = " "
 " When not in insert mode, use normal line numbers, Write mode for relative
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertEnter * :set number
@@ -153,8 +154,11 @@ endif
 " ]M            Jump on next class or method (normal, visual, operator
 " modes)
 
-"Disable Rope
-let g:pymode_rope = 0
+"Enable Rope
+let g:pymode_rope = 1
+
+" Remap go to definition 
+let g:pymode_rope_goto_definition_bind = "<leader>g"
 
 " Override run current python file key shortcut to Ctrl-Shift-e
 let g:pymode_run_bind = "<C-S-e>"
