@@ -20,15 +20,9 @@ set autoindent " always set autoindenting on
 set copyindent " copy the previous indentation on autoindenting
 
 " Toggle the tag bar
-nnoremap <leader>l :TagbarToggle<CR>
+nnoremap <F7> :TagbarToggle<CR>
 
-" TagList Plugin Configuration
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Close_On_Select = 1
-let Tlist_Use_Right_Window = 1
-let Tlist_File_Fold_Auto_Close = 1
-map <F7> :TlistToggle<CR>
+" Run python module (useful?)
 map <F10> :RunModule<CR>
 
 
@@ -182,7 +176,7 @@ let g:pymode_virtualenv = 1
 
 " Linting
 let g:pymode_lint = 1
-let g:pymode_lint_checker = "pep8,pylint" " comma separated list of tools (such as pyflakes,pep8
+let g:pymode_lint_checker = "pyflakes" " comma separated list of tools (such as pyflakes,pep8
 "" Auto check on save
 let g:pymode_lint_write = 1
 let g:pymode_lint_unmodified = 0 " Run on every save, even if unchanged
@@ -192,7 +186,18 @@ let g:pymode_lint_signs = 1
 
 "===================================
 
-source ~/.vim/plugin/autotag.vim
+let g:easytags_async = 1
+let g:easytags_languages = {
+            \ 'javascript': {
+            \    'cmd': 'jsctags',
+            \    'args': [],
+            \    'fileoutput_opt': '-f',
+            \    'stdout_opt': '-f-',
+            \    'recurse_flag': '-R',
+            \   }
+            \ }
+let g:easytags_file = './tags'
+:let g:easytags_auto_update = 1
 
 "Syntastic settings
 " Use rope of python stuff
@@ -209,4 +214,5 @@ let g:syntastic_check_on_wq = 1
 
 "React
 let g:jsx_ext_required = 0
+let g:syntastic_javascript_checkers = ['eslint']
 

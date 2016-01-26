@@ -55,3 +55,12 @@
 [submodule ".vim/bundle/jsx"]
 	path = .vim/bundle/jsx
 	url = https://github.com/mxw/vim-jsx.git
+[submodule ".vim/bundle/vim-javascript"]
+	path = .vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule ".vim/bundle/vim-eastags"]
+	path = .vim/bundle/vim-eastags
+	url = https://github.com/xolox/vim-easytags.git
+[submodule ".vim/bundle/vim-misc"]
+	path = .vim/bundle/vim-misc
+	url = https://github.com/xolox/vim-misc.git
